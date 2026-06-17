@@ -67,46 +67,25 @@ export function CartPage({ navigate }) {
       maxWidth: 420,
       margin: "40px auto",
     },
-    tick: {
-      fontSize: 72,
-      marginBottom: 16,
-    },
-    successTitle: {
-      color: "#2d5a3d",
-      fontSize: 26,
-      fontWeight: 800,
-      marginBottom: 12,
-    },
-    successMsg: {
-      color: "#4a7c59",
-      fontSize: 16,
-      lineHeight: 1.7,
-      marginBottom: 24,
-    },
   };
 
-  // ✅ Order Placed Screen
   if (orderPlaced) {
     return (
       <div style={styles.page}>
         <div style={styles.successBox}>
-          <div style={styles.tick}>✅</div>
-          <h2 style={styles.successTitle}>Order Placed!</h2>
-          <p style={styles.successMsg}>
+          <div style={{ fontSize: 72 }}>✅</div>
+          <h2 style={{ color: "#2d5a3d", fontSize: 26, fontWeight: 800 }}>
+            Order Placed!
+          </h2>
+          <p style={{ color: "#4a7c59", fontSize: 16, lineHeight: 1.7 }}>
             Thank you for your order! 🌿<br />
-            Your plants are on their way to you.<br />
+            Your plants are on their way.<br />
             Expected delivery in <strong>2-3 days</strong> 🚚
           </p>
-          <button style={styles.btn} onClick={() => {
-            setOrderPlaced(false);
-            navigate("home");
-          }}>
+          <button style={styles.btn} onClick={() => { setOrderPlaced(false); navigate("home"); }}>
             Back to Home 🏠
           </button>
-          <button style={styles.btn} onClick={() => {
-            setOrderPlaced(false);
-            navigate("plants");
-          }}>
+          <button style={styles.btn} onClick={() => { setOrderPlaced(false); navigate("plants"); }}>
             Shop More 🌱
           </button>
         </div>
@@ -114,24 +93,16 @@ export function CartPage({ navigate }) {
     );
   }
 
-  // 🛒 Cart Screen
   return (
     <div style={styles.page}>
       <div style={styles.box}>
         <div style={{ fontSize: 56 }}>🛒</div>
         <h2 style={{ color: "#2d5a3d" }}>Your Cart</h2>
-        {cartCount === 0 ? (
+        <p style={{ color: "#555", fontSize: 18 }}>
+          You have <strong>{cartCount}</strong> item(s) in your cart!
+        </p>
+        {cartCount > 0 ? (
           <>
-            <p style={{ color: "#555" }}>Your cart is empty!</p>
-            <button style={styles.btn} onClick={() => navigate("plants")}>
-              Shop Plants 🌿
-            </button>
-          </>
-        ) : (
-          <>
-            <p style={{ color: "#555" }}>
-              You have <strong>{cartCount}</strong> item(s) in your cart!
-            </p>
             <button style={styles.orderBtn} onClick={handlePlaceOrder}>
               Place Order 🛒
             </button>
@@ -144,6 +115,10 @@ export function CartPage({ navigate }) {
               Clear Cart 🗑️
             </button>
           </>
+        ) : (
+          <button style={styles.btn} onClick={() => navigate("plants")}>
+            Shop Plants 🌿
+          </button>
         )}
       </div>
     </div>
