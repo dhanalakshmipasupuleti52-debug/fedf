@@ -1,4 +1,3 @@
-
 export function Navbar({ currentPage, navigate, cartCount, hasItemsInCart }) {
   const styles = {
     nav: {
@@ -42,6 +41,7 @@ export function Navbar({ currentPage, navigate, cartCount, hasItemsInCart }) {
       fontSize: 16,
       color: "#fff",
       position: "relative",
+      cursor: "pointer",
     },
     cartDot: {
       display: "inline-block",
@@ -54,7 +54,7 @@ export function Navbar({ currentPage, navigate, cartCount, hasItemsInCart }) {
       right: -4,
     },
   };
- 
+
   return (
     <nav style={styles.nav}>
       <div style={styles.navBrand} onClick={() => navigate("home")}>
@@ -73,7 +73,7 @@ export function Navbar({ currentPage, navigate, cartCount, hasItemsInCart }) {
             {page.charAt(0).toUpperCase() + page.slice(1)}
           </button>
         ))}
-        <span style={styles.cart}>
+        <span style={styles.cart} onClick={() => navigate("cart")}>
           🛒 {cartCount}
           {hasItemsInCart && <span style={styles.cartDot} />}
         </span>
@@ -81,4 +81,3 @@ export function Navbar({ currentPage, navigate, cartCount, hasItemsInCart }) {
     </nav>
   );
 }
- 

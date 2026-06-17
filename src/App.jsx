@@ -5,18 +5,18 @@ import { Navbar } from "./Navbar";
 import { HomePage } from "./HomePage";
 import { PlantsPage } from "./PlantsPage";
 import { ContactPage } from "./ContactPage";
- 
+import { CartPage } from "./CartPage";
+
 function Router({ currentPage, navigate }) {
- 
   const [agreed, setAgreed] = useState(() => {
     return localStorage.getItem("agreedToTerms") === "true";
   });
- 
+
   const handleAgree = () => {
     localStorage.setItem("agreedToTerms", "true");
     setAgreed(true);
   };
- 
+
   const styles = {
     page: { maxWidth: 960, margin: "0 auto", padding: "40px 24px" },
     box: {
@@ -40,9 +40,11 @@ function Router({ currentPage, navigate }) {
       margin: 6,
     },
   };
- 
+
   if (currentPage === "home") return <HomePage navigate={navigate} />;
- 
+
+  if (currentPage === "cart") return <CartPage navigate={navigate} />;
+
   if (currentPage === "plants") {
     if (!agreed) {
       return (
@@ -60,9 +62,9 @@ function Router({ currentPage, navigate }) {
     }
     return <PlantsPage />;
   }
- 
+
   if (currentPage === "contact") return <ContactPage />;
- 
+
   return (
     <div style={styles.page}>
       <div style={styles.box}>
@@ -73,10 +75,10 @@ function Router({ currentPage, navigate }) {
     </div>
   );
 }
- 
+
 function AppContent() {
   const { currentPage, navigate, cartCount, hasItemsInCart } = useContext(AppContext);
- 
+
   const styles = {
     app: {
       fontFamily: "'Segoe UI', sans-serif",
@@ -94,7 +96,7 @@ function AppContent() {
       marginTop: "auto",
     },
   };
- 
+
   return (
     <div style={styles.app}>
       <Navbar
@@ -112,7 +114,7 @@ function AppContent() {
     </div>
   );
 }
- 
+
 export default function App() {
   return (
     <AppProvider>
