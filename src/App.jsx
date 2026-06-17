@@ -51,16 +51,23 @@ function Router({ currentPage, navigate }) {
         <div style={styles.page}>
           <div style={styles.box}>
             <h2 style={{ color: "#2d5a3d" }}>🔒 Members Only</h2>
-            <p style={{ color: "#555" }}>Agree to our care guidelines to browse plants.</p>
-            <button style={styles.btn} onClick={handleAgree}>I Agree 🌿</button>
-            <button style={{ ...styles.btn, background: "#ccc", color: "#333" }} onClick={() => navigate("home")}>
+            <p style={{ color: "#555" }}>
+              Agree to our care guidelines to browse plants.
+            </p>
+            <button style={styles.btn} onClick={handleAgree}>
+              I Agree 🌿
+            </button>
+            <button
+              style={{ ...styles.btn, background: "#ccc", color: "#333" }}
+              onClick={() => navigate("home")}
+            >
               Go Back
             </button>
           </div>
         </div>
       );
     }
-    return <PlantsPage />;
+    return <PlantsPage navigate={navigate} />;
   }
 
   if (currentPage === "contact") return <ContactPage />;
@@ -70,14 +77,17 @@ function Router({ currentPage, navigate }) {
       <div style={styles.box}>
         <div style={{ fontSize: 56 }}>🍂</div>
         <h2 style={{ color: "#2d5a3d" }}>404 – Page not found</h2>
-        <button style={styles.btn} onClick={() => navigate("home")}>Go Home</button>
+        <button style={styles.btn} onClick={() => navigate("home")}>
+          Go Home
+        </button>
       </div>
     </div>
   );
 }
 
 function AppContent() {
-  const { currentPage, navigate, cartCount, hasItemsInCart } = useContext(AppContext);
+  const { currentPage, navigate, cartCount, hasItemsInCart } =
+    useContext(AppContext);
 
   const styles = {
     app: {
